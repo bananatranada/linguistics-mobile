@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { NavigatorIOS, StyleSheet, Text, View } from 'react-native';
 
+import Navigator from './src/components/Navigator';
 import HelloWorldApp from './src/components/HelloWorldApp';
 import AuthPage from './src/components/AuthPage';
 
 export default class App extends Component {
-  render() {
-    return (
-      <NavigatorIOS
-        initialRoute={{
-          component: AuthPage,
-          title: 'My Initial Scene',
-        }}
-        style={{flex: 1}}
-      />
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            signedIn: false,
+        }
+    }
+    render() {
+        const Navigator = createNavigator()
+        return (
+            <Navigator />
+        );
+    }
 }
 
 const styles = StyleSheet.create({
