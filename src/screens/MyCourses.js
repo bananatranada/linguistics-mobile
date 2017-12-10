@@ -3,11 +3,11 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 
 
-export default class HomePage extends Component {
+export default class MyCourses extends Component {
 
     static navigationOptions = {
         headerMode: 'float',
-        title: 'Main'
+        title: 'My Courses'
     }
 
     constructor(props) {
