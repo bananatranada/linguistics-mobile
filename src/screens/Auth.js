@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 
-import Login from './Login';
-import Signup from './Signup';
+import Login from '../components/Login';
+import Signup from '../components/Signup';
 
 export default class AuthPage extends Component {
     static navigationOptions = {
-        header: null
+        headerMode: 'none'
     }
 
     constructor(props) {
@@ -37,8 +37,8 @@ export default class AuthPage extends Component {
                    </View>
                </View>
                <View style={styles.auth}>
-                   {this.state.activeTab === 'login' && <Login onSubmit={this.onSubmitLogin()} />}
-                   {this.state.activeTab === 'signup' && <Signup navigator={this.props.navigator} />}
+                   {this.state.activeTab === 'login' && <Login navigation={this.props.navigation} />}
+                   {this.state.activeTab === 'signup' && <Signup navigation={this.props.navigation} />}
                {/*<Login active={activeTab === 'login'} />*/}
                {/*<Signup active={activeTab === 'signup'} />*/}
                </View>
@@ -50,7 +50,7 @@ export default class AuthPage extends Component {
         return () => {
             console.log('onSubmitLogin');
             // TODO: Validation
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('Main')
         }
     }
     // onPressLoginButton() {

@@ -5,6 +5,11 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default class HomePage extends Component {
 
+    static navigationOptions = {
+        headerMode: 'float',
+        title: 'Main'
+    }
+
     constructor(props) {
         super(props);
 

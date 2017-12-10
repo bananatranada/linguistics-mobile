@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
-import { NavigatorIOS, StyleSheet, Text, View } from 'react-native';
+import { NavigatorIOS, StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
-import Navigator from './src/components/Navigator';
-import HelloWorldApp from './src/components/HelloWorldApp';
-import AuthPage from './src/components/AuthPage';
+import { createNavigator } from './src/routes';
+import { isSignedIn } from './src/auth';
 
 export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             signedIn: false,
-        }
+            checkedSignIn: false
+        };
+
+        // temp; so it doesn't save state
+        AsyncStorage.clear();
     }
+
+    componentWillMount() {
+        isSignedIn()
+            .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
+            .catch(err => alert("An error occurred"));
+    }
+
+
     render() {
-        const Navigator = createNavigator()
+        if (!this.state.checkedSignIn) {
+            return null;
+        }
+
+        const Navigator = createNavigator(this.state.signedIn);
+
         return (
             <Navigator />
         );

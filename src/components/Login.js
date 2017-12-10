@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Button, Text, TextInput } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
+import { Card, Button, FormLabel, FormInput } from "react-native-elements";
+import { NavigationActions } from 'react-navigation'
 
-import HomePage from './HomePage'
+import { onSignIn } from '../auth';
 
 export default class Login extends Component {
     constructor(props) {
@@ -11,41 +13,44 @@ export default class Login extends Component {
             password: '',
         };
 
-        this.onSubmitLogin = this.onSubmitLogin.bind(this);
+        // this.onSubmitLogin = this.onSubmitLogin.bind(this);
     }
 
     render() {
+        const resetAction = NavigationActions.reset({
+            index: 0,
+            actions: [
+                NavigationActions.navigate({routeName: 'Tabs'})
+            ]
+        })
+
         return (
-            <View>
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(email) => this.setState({email})}
-                    value={this.state.email}
-                    placeholder="Email"
-                    onSubmitEditing={this.props.onSubmit()}
-                />
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(password) => this.setState({password})}
-                    secureTextEntry={true}
-                    value={this.state.password}
-                    placeholder="Password"
-                    onSubmitEditing={this.props.onSubmit()}
-                />
-                {/*<Button title="Log In" onPress={() => this.setState({activeTab: 'signup'})}/>*/}
+            <View style={{ paddingVertical: 20 }}>
+                <Card>
+                    <FormLabel>Email</FormLabel>
+                    <FormInput placeholder="Email address..." />
+                    <FormLabel>Password</FormLabel>
+                    <FormInput secureTextEntry placeholder="Password..." />
+
+                    <Button
+                        buttonStyle={{ marginTop: 20 }}
+                        backgroundColor="#03A9F4"
+                        title="SIGN IN"
+                        onPress={() => {
+                            onSignIn().then(() => this.props.navigation.dispatch(resetAction));
+                        }}
+                    />
+                </Card>
             </View>
         )
     }
 
 
-    onSubmitLogin() {
-        return () => {
-            console.log('onSubmitLogin');
-            // TODO: Validation
-            this.props.navigator.replace({
-                component: HomePage,
-                title: 'Home',
-            })
-        }
-    }
+    // onSubmitLogin() {
+    //     return () => {
+    //         console.log('onSubmitLogin');
+    //         // TODO: Validation
+    //         this.props.navigation.navigate('Main')
+    //     }
+    // }
 }
