@@ -8,8 +8,12 @@ import Auth from './screens/Auth';
 import MyCourses from './screens/MyCourses';
 import CourseCatalog from './screens/CourseCatalog';
 import Account from './screens/Account';
+import CoursePreview from './screens/CoursePreview';
 
 import Announcements from './screens/Announcements';
+import Lessons from './screens/Lessons';
+import Assignments from './screens/Assignments';
+import Grades from './screens/Grades';
 
 export const createNavigator = (signedIn = false) => {
     console.log(signedIn);
@@ -53,7 +57,28 @@ export const createNavigator = (signedIn = false) => {
                                     tabBarIcon: () => <Icon name="folder" size={20} />
                                 }
                             },
+                            Lessons: {
+                                screen: Lessons,
+                                navigationOptions: {
+                                    tabBarIcon: () => <Icon name="folder" size={20} />
+                                }
+                            },
+                            Assignments: {
+                                screen: Assignments,
+                                navigationOptions: {
+                                    tabBarIcon: () => <Icon name="folder" size={20} />
+                                }
+                            },
+                            Grades: {
+                                screen: Grades,
+                                navigationOptions: {
+                                    tabBarIcon: () => <Icon name="folder" size={20} />
+                                }
+                            },
                         })
+                    },
+                    CoursePreview: {
+                        screen: CoursePreview,
                     }
                 })
             }

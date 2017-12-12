@@ -4,10 +4,10 @@ import { Card, Button, FormLabel, FormInput } from "react-native-elements";
 import { NavigationActions } from 'react-navigation'
 
 
-export default class Announcements extends Component {
+export default class CoursePreview extends Component {
     static navigationOptions = {
         headerMode: 'float',
-        title: 'Announcements'
+        title: 'CoursePreview'
     }
 
     constructor(props) {
@@ -16,10 +16,14 @@ export default class Announcements extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <View style={{ paddingVertical: 20 }}>
-                <Text>Announcements</Text>
+                <Text>CoursePreview</Text>
+                <Button
+                    title="Enroll"
+                    // onPress={() => this.setState({activeTab: 'login'})}
+                    // style={[this.state.activeTab === 'login' && styles.authButtonActive]}
+                />
             </View>
         )
     }

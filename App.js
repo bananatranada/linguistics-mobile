@@ -17,6 +17,11 @@ export default class App extends Component {
     }
 
     componentWillMount() {
+        // await Expo.Font.loadAsync({
+        //     'Roboto': require('native-base/Fonts/Roboto.ttf'),
+        //     'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+        // });
+
         isSignedIn()
             .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
             .catch(err => alert("An error occurred"));
@@ -39,7 +44,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
